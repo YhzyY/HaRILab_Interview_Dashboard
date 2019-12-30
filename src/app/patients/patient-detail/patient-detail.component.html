@@ -1,0 +1,19 @@
+<h2>PatientDetail</h2>
+<div *ngIf="patient$ | async as patient">
+  <h3>"{{ patient.name }}"</h3>
+  <div>
+    <label>Id: </label>{{ patient.id }}</div>
+  <div>
+    <label>Name: </label>
+    <input [(ngModel)]="patient.name" placeholder="name"/>
+  </div>
+  <p>
+    <button (click)="gotoPatients(patient)">Back</button>
+  </p>
+</div>
+
+<!--
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->

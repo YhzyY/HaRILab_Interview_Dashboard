@@ -1,0 +1,11 @@
+<h2>PatientList</h2>
+<ul class="patients">
+  <li *ngFor="let patient of patients$ | async"
+      [class.selected]="patient.id === selectedId">
+    <a [routerLink]="['/patient', patient.id]">
+      <span class="badge">{{ patient.id }}</span>{{ patient.name }}
+    </a>
+  </li>
+</ul>
+
+<!--<button routerLink="/sidekicks">Go to sidekicks</button>-->
