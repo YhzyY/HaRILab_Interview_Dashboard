@@ -2,7 +2,7 @@
 <ul class="patients">
   <li *ngFor="let patient of patients$ | async"
       [class.selected]="patient.id === selectedId">
-    <a [routerLink]="['/patient', patient.id]">
+    <a [routerLink]="['/admin/patient', patient.id]">
       <span class="badge">{{ patient.id }}</span>{{ patient.name }}
     </a>
   </li>

@@ -32,7 +32,7 @@ export class PatientDetailComponent implements OnInit {
 
   gotoPatients(patient: Patient) {
     const patientId = patient ? patient.id : null;
-    this.router.navigate(['/patients', { id: patientId}]); // optional parameters: { id: patientId}
+    this.router.navigate(['/admin/patients', { id: patientId}]); // optional parameters: { id: patientId}
   }
 
 }

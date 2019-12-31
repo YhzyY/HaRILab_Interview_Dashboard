@@ -7,9 +7,9 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
-  // { path: 'patients', component: PatientListComponent },
+  { path: 'patients', redirectTo: 'admin/patients', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: '',   redirectTo: '/patients', pathMatch: 'full' },
+  { path: '',   redirectTo: 'admin/patients', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 
