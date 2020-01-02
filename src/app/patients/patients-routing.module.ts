@@ -10,6 +10,7 @@ import { AuthGuard } from '../auth/auth.guard';
 const patientsRoutes: Routes = [
   {path: 'admin',
     component: AdminComponent,
+    data: { animation: 'admin' },
     canActivate: [AuthGuard],
     children: [
       {

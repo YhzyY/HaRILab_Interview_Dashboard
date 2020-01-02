@@ -18,6 +18,10 @@ export class LoginComponent implements OnInit {
     this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
   }
 
+  greeting() {
+    this.authService.greeting();
+  }
+
   login() {
     this.message = 'Trying to log in ...';
 
