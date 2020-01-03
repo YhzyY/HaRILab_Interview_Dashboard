@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {AuthService} from '../auth/auth.service';
+import {getHtmlTagDefinition} from '@angular/compiler';
+import {getInputNamesOfClass} from '@angular/core/schematics/migrations/static-queries/angular/directive_inputs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,6 +11,8 @@ import {AuthService} from '../auth/auth.service';
 export class LoginComponent implements OnInit {
 
   message: string;
+  // username: HTMLInputElement;
+  // password: HTMLInputElement;
 
   constructor(public authService: AuthService, public router: Router) {
     this.setMessage();
@@ -22,10 +26,10 @@ export class LoginComponent implements OnInit {
     this.authService.greeting();
   }
 
-  login() {
+  login(username: HTMLInputElement, password: HTMLInputElement) {
     this.message = 'Trying to log in ...';
-
-    this.authService.login().subscribe(() => {
+    console.log(username.value + '------' + password.value);
+    this.authService.login(username, password).subscribe(() => {
       this.setMessage();
       if (this.authService.isLoggedIn) {
         // Get the redirect URL from our auth service
@@ -43,7 +47,11 @@ export class LoginComponent implements OnInit {
     this.setMessage();
   }
 
-  ngOnInit() {
+  signup() {
+
   }
 
+
+  ngOnInit() {
+  }
 }

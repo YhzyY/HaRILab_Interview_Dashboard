@@ -6,14 +6,6 @@ import { HttpClient} from '@angular/common/http';
 import * as url from 'url';
 // import { HttpClientModule } from '@angular/common/http';
 
-// class Clinician {
-//   id: number;
-//   userName: string;
-//   password: number;
-// }
-
-// const clinicianName = '';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -28,16 +20,17 @@ export class AuthService {
   clinicianName: string;
 
   constructor(private http: HttpClient) { }
+
   greeting(): Observable<string> {
     return this.http.get<string>('https://stormy-dawn-15351.herokuapp.com/greeting');
   }
 
-  login(): Observable<boolean> {
+  login(username: HTMLInputElement, password: HTMLInputElement): Observable<boolean> {
     const params = new HttpParams().set('userName', 'Bean').set('password', '12346');
     // this.clinicianName = this.http.get<string>(
     // 'https://stormy-dawn-15351.herokuapp.com/ClinicianLogin?userName=Bean&password=12345');
 
-    this.returnObservable().subscribe((data) => this.clinicianName = data);
+    this.checkClinician(username.value, password.value).subscribe(data => this.clinicianName = data);
 
     // this.http.get<string>(
     //   'https://stormy-dawn-15351.herokuapp.com/ClinicianLogin?userName=Bean&password=12345').subscribe(
@@ -50,7 +43,6 @@ export class AuthService {
     console.log('clinician name : ', this.clinicianName);
     if (this.clinicianName != null) {
       return of(true).pipe(
-        delay(1000),
         tap(val => this.isLoggedIn = true)
       );
     } else {
@@ -66,17 +58,12 @@ export class AuthService {
     this.isLoggedIn = false;
   }
 
-  returnObservable() {
-    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-    return this.http.get<string>('https://stormy-dawn-15351.herokuapp.com/ClinicianLogin?userName=Bean&password=12345',
-      {headers, responseType: 'text' as 'json' });
+  checkClinician(Urlusername, Urlpassword) {
+    // const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+    return this.http.get<string>('https://stormy-dawn-15351.herokuapp.com/ClinicianLogin?' +
+      'userName=' + Urlusername + '&password=' + Urlpassword,
+      {responseType: 'text' as 'json' });
   }
-
-  // checkClinician() {
-  //   const params = new HttpParams().set('userName', 'Bean').set('password', '12345');
-  //   this.clinicianName = this.http
-  //     .get<string>('https://stormy-dawn-15351.herokuapp.com/ClinicianLogin', { params });
-  // }
 
 
 }

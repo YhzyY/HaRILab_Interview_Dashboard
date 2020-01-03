@@ -1,7 +1,31 @@
-<h2>Login</h2>
+<h2 *ngIf="!authService.isLoggedIn"> Login or Signup</h2>
+<h2 *ngIf="authService.isLoggedIn">Username : {{this.authService.clinicianName}}</h2>
 <!--<p>{{message}}</p>-->
 
-<p>
-  <button (click)="login()"  *ngIf="!authService.isLoggedIn">Login</button>
-  <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
+<p  *ngIf="!authService.isLoggedIn">
+<!--  <form>-->
+    <label>username : </label>
+
+    <input type="text" name="username" placeholder="username" #username>
+    <br>
+    <label>password : </label>
+    <input type="password" name="password" placeholder="password" #password>
+<!--  </form>-->
+  <br><br>
+  <button (click)="login(username, password)">
+  Login
+  </button>
+  <br><br>
+  <a>new clinician ?  </a>
+  <button (click)="signup()">
+    Signup
+  </button>
+
 </p>
+
+<p  *ngIf="authService.isLoggedIn">
+  <button (click)="logout()">
+    Logout
+  </button>
+</p>
+
