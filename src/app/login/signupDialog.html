@@ -1,0 +1,33 @@
+<!--<p>Enter new username and password. </p>-->
+<!--  <br>-->
+<!--  <label>username : </label>-->
+<!--  <mat-form-field>-->
+<!--    <input matInput name="newName"  type="text" [(ngModel)]="data.newName">-->
+<!--  </mat-form-field>-->
+<!--  <br>-->
+<!--  <label>password : </label>-->
+<!--  <mat-form-field>-->
+<!--    <input matInput name="newPassword" type="password" [(ngModel)]="data.newPassword">-->
+<!--  </mat-form-field>-->
+
+<!--<div mat-dialog-actions>-->
+<!--  <button mat-button (click)="onNoClick()">No Thanks</button>-->
+<!--  <button mat-button [mat-dialog-close]="data.newName" cdkFocusInitial>Ok</button>-->
+<!--</div>-->
+
+<p>Enter new username and password. </p>
+<br>
+<label>username : </label>
+<mat-form-field>
+  <input matInput name="newName"  type="text" [(ngModel)]="newName">
+</mat-form-field>
+<br>
+<label>password : </label>
+<mat-form-field>
+  <input matInput name="newPassword" type="password" [(ngModel)]="newPassword">
+</mat-form-field>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="saveData()">OK</button>
+</div>

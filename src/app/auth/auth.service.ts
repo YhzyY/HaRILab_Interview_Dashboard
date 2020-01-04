@@ -58,6 +58,10 @@ export class AuthService {
     this.isLoggedIn = false;
   }
 
+  signup(newName: string, newPassword: number): void {
+    console.log('signup : ' + newName + ' and ' + newPassword);
+  }
+
   checkClinician(Urlusername, Urlpassword) {
     // const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
     return this.http.get<string>('https://stormy-dawn-15351.herokuapp.com/ClinicianLogin?' +

@@ -4,11 +4,14 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import {LoginComponent, newUserDialogComponent} from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PatientsModule } from './patients/patients.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientJsonpModule} from '@angular/common/http';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule, MatInputModule} from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // import {PatientListComponent} from './patients/patient-list/patient-list.component';
 // import {PatientDetailComponent} from './patients/patient-detail/patient-detail.component';
 
@@ -17,6 +20,8 @@ import {HttpClientJsonpModule} from '@angular/common/http';
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
+    newUserDialogComponent,
+    // signupDialog
     // PatientListComponent,
     // PatientDetailComponent
   ],
@@ -26,9 +31,15 @@ import {HttpClientJsonpModule} from '@angular/common/http';
     HttpClientModule,
     HttpClientJsonpModule,
     PatientsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatInputModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [newUserDialogComponent]
 })
 export class AppModule { }

@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {AuthService} from '../auth/auth.service';
-import {getHtmlTagDefinition} from '@angular/compiler';
+import {MatDialog, MatDialogConfig, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+// import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+// import {MatDialogModule} from '@angular/material/dialog';
+// import {getHtmlTagDefinition} from '@angular/compiler';
 import {getInputNamesOfClass} from '@angular/core/schematics/migrations/static-queries/angular/directive_inputs';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,10 +15,11 @@ import {getInputNamesOfClass} from '@angular/core/schematics/migrations/static-q
 export class LoginComponent implements OnInit {
 
   message: string;
-  // username: HTMLInputElement;
-  // password: HTMLInputElement;
+  newName: string;
+  newPassword: number;
 
-  constructor(public authService: AuthService, public router: Router) {
+  constructor(public authService: AuthService, public router: Router, private dialog: MatDialog
+  ) {
     this.setMessage();
   }
 
@@ -47,11 +52,58 @@ export class LoginComponent implements OnInit {
     this.setMessage();
   }
 
-  signup() {
+  signup(): void {
+    // const dialogConfig = new MatDialogConfig();
+    // dialogConfig.disableClose = true;
+    // dialogConfig.autoFocus = true;
+    // this.dialog.open(newUserDialogComponent, dialogConfig);
 
+    const dialogRef = this.dialog.open(newUserDialogComponent, {
+      width: '300px',
+      data: {newName: this.newName, newPassword: this.newPassword}
+    });
+
+    dialogRef.afterClosed().subscribe(
+      result => {
+        this.newName = result.newName;
+        this.newPassword = result.newPassword;
+        // console.log('The dialog was closed ' + this.newName + ' , ' + this.newPassword);
+        this.authService.signup(this.newName, this.newPassword);
+      }
+    );
   }
-
-
   ngOnInit() {
+  }
+}
+
+export interface DialogData {
+  newName: string;
+  newPassword: number;
+}
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './signupDialog.html',
+})
+
+// tslint:disable-next-line:class-name component-class-suffix
+export class newUserDialogComponent {
+
+  // constructor(
+  //   public dialogRef: MatDialogRef<newUserDialogComponent>,
+  //   @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  //
+  // onNoClick(): void {
+  //   this.dialogRef.close();
+  // }
+
+  constructor(public dialogRef: MatDialogRef<newUserDialogComponent>) {}
+  newName: string;
+  newPassword: number;
+  saveData() {
+    this.dialogRef.close({newName: this.newName, newPassword: this.newPassword});
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

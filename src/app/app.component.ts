@@ -9,7 +9,7 @@ import { RouterOutlet } from '@angular/router';
   animations: [ slideInAnimation ]
 })
 export class AppComponent {
-  title = 'web-app';
+  title = 'Dashboard';
 
   getAnimationData(outlet: RouterOutlet) {
     // The getAnimationData function returns the animation property from the data provided through the ActivatedRoute
