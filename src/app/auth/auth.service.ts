@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable, of, Subscription} from 'rxjs';
-import {delay, tap} from 'rxjs/operators';
+import {catchError, delay, tap} from 'rxjs/operators';
 import {HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import { HttpClient} from '@angular/common/http';
 import * as url from 'url';
@@ -18,6 +18,7 @@ export class AuthService {
   restStatus = null;
   userName = '';
   clinicianName: string;
+  postFeedback: string;
 
   constructor(private http: HttpClient) { }
 
@@ -60,14 +61,23 @@ export class AuthService {
 
   signup(newName: string, newPassword: number): void {
     console.log('signup : ' + newName + ' and ' + newPassword);
+    this.addClinician(newName, newPassword).subscribe(result => this.postFeedback = result);
+    console.log(this.postFeedback);
   }
 
   checkClinician(Urlusername, Urlpassword) {
     // const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-    return this.http.get<string>('https://stormy-dawn-15351.herokuapp.com/ClinicianLogin?' +
+    return this.http.get<string>(
+      'https://stormy-dawn-15351.herokuapp.com/ClinicianLogin?' +
       'userName=' + Urlusername + '&password=' + Urlpassword,
       {responseType: 'text' as 'json' });
   }
 
+  addClinician(newName: string, newPassword: number) {
+    return this.http.post<string>(
+      'https://stormy-dawn-15351.herokuapp.com/newClinician?userName=' + newName + '&password=' + newPassword,
+      null,
+      {responseType: 'text' as 'json' });
+  }
 
 }
