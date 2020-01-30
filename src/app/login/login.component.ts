@@ -34,8 +34,9 @@ export class LoginComponent implements OnInit {
   login(username: HTMLInputElement, password: HTMLInputElement) {
     this.message = 'Trying to log in ...';
     console.log(username.value + '------' + password.value);
-    this.authService.login(username, password).subscribe(() => {
+    this.authService.login(username.value, password.value).subscribe(data => {
       this.setMessage();
+      console.log('test in login.component.ts ' + this.authService.isLoggedIn);
       if (this.authService.isLoggedIn) {
         // Get the redirect URL from our auth service
         // If no redirect has been set, use the default
@@ -67,7 +68,6 @@ export class LoginComponent implements OnInit {
       result => {
         this.newName = result.newName;
         this.newPassword = result.newPassword;
-        // console.log('The dialog was closed ' + this.newName + ' , ' + this.newPassword);
         this.authService.signup(this.newName, this.newPassword);
       }
     );

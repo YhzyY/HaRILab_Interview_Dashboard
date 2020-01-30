@@ -2,9 +2,12 @@
 <ul class="patients">
   <li *ngFor="let patient of patients$ | async"
       [class.selected]="patient.id === selectedId">
-    <a [routerLink]="['/admin/patient', patient.id]">
-      <span class="badge">{{ patient.id }}</span>{{ patient.name }}
-    </a>
+    <div [routerLink]="['/admin/patient', patient.id]">
+      <span class="badge" style="width:70px;text-align:left;">{{ patient.name }}</span>
+      <span style="display:inline-block;width:150px;height:14px;text-align:center;">{{ patient.AttackDate }}</span>
+      <span style="display:inline-block;width:150px;height:14px;text-align:center;">{{ patient.AttackTime }}</span>
+      <span *ngIf="patient.alert == 'alert'" style="display:inline-block;width:150px;color:red;font-weight:bold;text-align:center;">Alert</span>
+    </div>
   </li>
 </ul>
 

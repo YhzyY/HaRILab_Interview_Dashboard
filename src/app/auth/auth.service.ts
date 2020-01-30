@@ -26,33 +26,24 @@ export class AuthService {
     return this.http.get<string>('https://stormy-dawn-15351.herokuapp.com/greeting');
   }
 
-  login(username: HTMLInputElement, password: HTMLInputElement): Observable<boolean> {
-    const params = new HttpParams().set('userName', 'Bean').set('password', '12346');
-    // this.clinicianName = this.http.get<string>(
-    // 'https://stormy-dawn-15351.herokuapp.com/ClinicianLogin?userName=Bean&password=12345');
+  login(username: string, password: string): Observable<boolean> {
 
-    this.checkClinician(username.value, password.value).subscribe(data => this.clinicianName = data);
+    this.checkClinician(username, password).subscribe(
+      data => {
+        this.clinicianName = data;
 
-    // this.http.get<string>(
-    //   'https://stormy-dawn-15351.herokuapp.com/ClinicianLogin?userName=Bean&password=12345').subscribe(
-    //     (data) => this.clinicianName = data.toString());
+        console.log('test in auth.service.ts ' + this.isLoggedIn);
+        console.log('clinician name : ', this.clinicianName);
+        if (this.clinicianName != null) {
+          this.isLoggedIn = true;
+        } else {
+          this.isLoggedIn = false;
+        }
+      });
 
-    // const response = this.http.get('https://stormy-dawn-15351.herokuapp.com/ClinicianLogin?userName=Bean&password=12345',
-    //   { responseType: 'text' as 'json'}).subscribe();
-
-
-    console.log('clinician name : ', this.clinicianName);
-    if (this.clinicianName != null) {
-      return of(true).pipe(
-        tap(val => this.isLoggedIn = true)
-      );
-    } else {
-      this.isLoggedIn = false;
-    }
-    // return of(true).pipe(
-    //   delay(1000),
-    //   tap(val => this.isLoggedIn = true)
-    // );
+    return of(true).pipe(
+      delay(1000)
+    );
   }
 
   logout(): void {
@@ -61,8 +52,8 @@ export class AuthService {
 
   signup(newName: string, newPassword: number): void {
     console.log('signup : ' + newName + ' and ' + newPassword);
-    this.addClinician(newName, newPassword).subscribe(result => this.postFeedback = result);
-    console.log(this.postFeedback);
+    this.addClinician(newName, newPassword).subscribe(
+      result => {this.postFeedback = result; console.log(this.postFeedback); });
   }
 
   checkClinician(Urlusername, Urlpassword) {

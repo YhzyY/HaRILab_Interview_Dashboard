@@ -1,4 +1,8 @@
 export class Patient {
-  id: number;
+  id: string;
   name: string;
+  alert: string;
+  AttackTime: string;
+  AttackDate: string;
+
 }

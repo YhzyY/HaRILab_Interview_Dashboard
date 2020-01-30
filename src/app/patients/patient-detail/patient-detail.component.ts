@@ -21,13 +21,15 @@ export class PatientDetailComponent implements OnInit {
 
   ngOnInit() {
   //  use the ActivatedRoute service to retrieve the parameters for the route
-    this.patient$ = this.route.paramMap.pipe(
-      // The paramMap processing is a bit tricky. When the map changes, you get() the id parameter from the changed parameters.
-      switchMap((params: ParamMap) =>
-        this.service.getPatient(params.get('id')))
-    );
-  //   const id = this.route.snapshot.paramMap.get('id');
-  //   this.patient$ = this.service.getPatient(id);
+  //   this.patient$ = this.route.paramMap.pipe(
+  //     // The paramMap processing is a bit tricky. When the map changes, you get() the id parameter from the changed parameters.
+  //     switchMap((params: ParamMap) =>
+  //       this.service.getPatient(params.get('id'))
+  //       // console.log((params.get('id'))
+  //       )
+  //   );
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log(id);
   }
 
   gotoPatients(patient: Patient) {
