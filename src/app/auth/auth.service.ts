@@ -53,7 +53,8 @@ export class AuthService {
   signup(newName: string, newPassword: number): void {
     console.log('signup : ' + newName + ' and ' + newPassword);
     this.addClinician(newName, newPassword).subscribe(
-      result => {this.postFeedback = result; console.log(this.postFeedback); });
+      result => {this.postFeedback = result; console.log(this.postFeedback); alert(this.postFeedback);
+      });
   }
 
   checkClinician(Urlusername, Urlpassword) {

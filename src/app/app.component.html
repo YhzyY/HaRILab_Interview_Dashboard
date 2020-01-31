@@ -1,11 +1,10 @@
 <h1>Dashboard</h1>
 <nav>
-  <a routerLink="/patients" routerLinkActive="active">patients </a>
+  <button routerLink="/patients" routerLinkActive="active">patients </button>
 
-  <a routerLink="/login" routerLinkActive="active">login </a>
+  <button routerLink="/login" routerLinkActive="active">login </button>
 </nav>
-<!--<router-outlet></router-outlet>-->
-<!--wrap the RouterOutlet inside an element. You'll use the @routeAnimation trigger and bind it to the element.-->
+
 <div [@routeAnimation]="getAnimationData(routerOutlet)">
   <router-outlet #routerOutlet="outlet"></router-outlet>
 </div>

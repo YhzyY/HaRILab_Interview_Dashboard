@@ -44,6 +44,8 @@ export class LoginComponent implements OnInit {
 
         // Redirect the user
         this.router.navigateByUrl(redirect);
+      } else {
+        alert('log in failed') ;
       }
     });
   }

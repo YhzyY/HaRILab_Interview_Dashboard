@@ -40,6 +40,7 @@ export class PatientDetailComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild('barChart', {static: true}) barChart;
+  username: any;
 
   constructor(
     // asks Angular to inject services that the component requires
@@ -55,6 +56,10 @@ export class PatientDetailComponent implements OnInit {
     this.dataSource = new MatTableDataSource<Attack>(this.AttacksDetail);
     this.userID = this.route.snapshot.paramMap.get('id');
     console.log(this.userID);
+
+    this.getPatientName(this.userID).subscribe(
+      data => {this.username = data; });
+
     this.getDetail();
     this.currentDate = new Date().toLocaleDateString();
     for (let i = 6; i >= 0; i--) {
@@ -62,6 +67,7 @@ export class PatientDetailComponent implements OnInit {
     }
     this.dateList = this.dateList.reverse();
     this.reportData = [];
+
     this.getReport();
   }
 
@@ -130,6 +136,13 @@ export class PatientDetailComponent implements OnInit {
         }
       }
     });
+  }
+
+  getPatientName(DeviceID) {
+    return this.http.get<string>(
+      'https://stormy-dawn-15351.herokuapp.com/participantName?' +
+      'uuid=' + DeviceID,
+      {responseType: 'text' as 'json' });
   }
 
 }
