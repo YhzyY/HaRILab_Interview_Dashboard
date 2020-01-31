@@ -8,6 +8,7 @@ import {FormsModule} from '@angular/forms';
 import { AdminComponent } from './admin/admin.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatPaginatorModule, MatTableModule} from '@angular/material';
 
 
 @NgModule({
@@ -21,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    PatientsRoutingModule
+    PatientsRoutingModule,
+    MatTableModule,
+    MatPaginatorModule
   ]
 })
 export class PatientsModule { }
