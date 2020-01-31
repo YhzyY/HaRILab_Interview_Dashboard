@@ -12,6 +12,7 @@ import {HttpClientJsonpModule} from '@angular/common/http';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule, MatInputModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ChartsModule} from 'ng2-charts';
 // import {AuthService} from './auth/auth.service';
 // import {PatientListComponent} from './patients/patient-list/patient-list.component';
 // import {PatientDetailComponent} from './patients/patient-detail/patient-detail.component';
@@ -37,7 +38,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    ChartsModule
   ],
   // AuthService
   providers: [],

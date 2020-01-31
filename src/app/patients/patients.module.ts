@@ -9,6 +9,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatPaginatorModule, MatTableModule} from '@angular/material';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {MatPaginatorModule, MatTableModule} from '@angular/material';
     HttpClientModule,
     PatientsRoutingModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ChartsModule
   ]
 })
 export class PatientsModule { }
